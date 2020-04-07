@@ -43,7 +43,7 @@ func (mw *multiWriter) Write(p []byte) (n int, err error) {
 	results := make(chan data, len(mw.writers))
 
 	for _, wr := range mw.writers {
-		go func(w io.Writer, p []byte, ch chan data) {
+		go func(w io.Writer, p []byte, ch chan<- data) {
 			n, err = w.Write(p)
 			if err != nil {
 				ch <- data{n, err}

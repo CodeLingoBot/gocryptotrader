@@ -414,7 +414,7 @@ func TestEnableDisableRateLimit(t *testing.T) {
 
 	ti := time.NewTicker(time.Second)
 	c := make(chan struct{})
-	go func(c chan struct{}) {
+	go func(c chan<- struct{}) {
 		err = r.SendPayload(&Item{
 			Method:      http.MethodGet,
 			Path:        testURL,

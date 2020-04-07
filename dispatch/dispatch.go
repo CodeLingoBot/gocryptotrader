@@ -127,7 +127,7 @@ func (d *Dispatcher) stop() error {
 			}
 		}
 	}()
-	go func(ch chan struct{}) { d.wg.Wait(); ch <- struct{}{} }(ch)
+	go func(ch chan<- struct{}) { d.wg.Wait(); ch <- struct{}{} }(ch)
 	select {
 	case <-ch:
 		// close all routes
